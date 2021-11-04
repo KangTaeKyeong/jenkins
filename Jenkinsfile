@@ -3,14 +3,13 @@ pipeline {
   stages {
     stage('buile') {
       steps {
-        sh 'echo "Hello world"'
+        sh 'sudo yum install -y httpd'
       }
     }
 
     stage('test') {
       steps {
-        sh '''sudo yum install -y httpd
-sudo systemctl start httpd'''
+        sh 'sudo systemctl start httpd'
       }
     }
 
