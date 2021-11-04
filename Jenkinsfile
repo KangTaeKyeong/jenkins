@@ -3,13 +3,25 @@ pipeline {
   stages {
     stage('buile') {
       steps {
-        sh 'sudo yum install -y httpd'
+        sh 'echo "Hello world"'
       }
     }
 
     stage('test') {
-      steps {
-        sh 'sudo systemctl start httpd'
+      parallel {
+        stage('test') {
+          steps {
+            sh '''sudo yum install -y httpd
+sudo systemctl start httpd'''
+          }
+        }
+
+        stage('test-1') {
+          steps {
+            sh 'ls -al'
+          }
+        }
+
       }
     }
 
